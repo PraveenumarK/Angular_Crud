@@ -1,1 +1,42 @@
-<p>employee works!</p>
+<div class="container">
+    <h2>Employee Management</h2>
+  
+    <form (ngSubmit)="isEditMode ? updateEmployee() : addEmployee()">
+      <div>
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="newEmployee.name" name="name" required />
+      </div>
+      <div>
+        <label>Role:</label>
+        <input type="text" [(ngModel)]="newEmployee.role" name="role" required />
+      </div>
+      <div>
+        <label>Salary:</label>
+        <input type="number" [(ngModel)]="newEmployee.salary" name="salary" required />
+      </div>
+      <button type="submit">{{ isEditMode ? 'Update' : 'Add' }} Employee</button>
+    </form>
+  
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.role }}</td>
+          <td>{{ employee.salary }}</td>
+          <td>
+            <button (click)="editEmployee(employee)">Edit</button>
+            <button (click)="deleteEmployee(employee.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
